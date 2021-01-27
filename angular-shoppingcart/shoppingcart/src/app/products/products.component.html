@@ -1,0 +1,56 @@
+<main class="container-fluid">
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Online iPhone Store</h1>
+    <p class="lead">Buy iPhones online at discounted price !!</p>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-lg-4">
+      <app-cart> </app-cart>
+    </div>
+    <div class="col-md-8 col-lg-8">
+      <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <div class="col" *ngFor="let product of productList">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h4 class="my-0 fw-normal">{{ product.name }}</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">
+                ${{ product.price }}
+                <small class="text-muted"></small>
+              </h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>{{ product.desc }}</li>
+              </ul>
+              <div class="input-group number-input safari_only mb-0 w-100">
+                <span class="input-group-btn">
+                  <button
+                    (click)="removeProduct(product)"
+                    class="minus decrease btn-sm"
+                  >
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+                </span>
+                <input
+                  class="form-control input-number input-sm"
+                  type="number"
+                  min="0"
+                  value="0"
+                  [(ngModel)]="product.quantity"
+                />
+                <span class="input-group-btn">
+                  <button
+                    (click)="addProduct(product)"
+                    class="plus increase btn-sm"
+                  >
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 col-lg-3 order-md-last">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <blockquote>
+          <p class="text-muted">Your cart</p>
+          <span class="badge bg-secondary rounded-pill">{{
+            cartItems.length
+          }}</span>
+        </blockquote>
+      </h4>
+      <div
+        *ngIf="cartItems !== undefined && cartItems.length === 0"
+        class="alrert alert-info"
+      >
+        Empty Cart
+      </div>
+      <div
+        *ngIf="cartItems !== undefined && cartItems.length > 0"
+        class="list-group mb-3"
+      >
+        <ul>
+          <li
+            *ngFor="let cartItem of cartItems"
+            class="list-group-item d-flex justify-content-between lh-sm"
+          >
+            <p>
+              <span class="my-0">{{ cartItem.productName }} </span>
+              <span class="text-muted">x {{ cartItem.quantity }} </span>
+            </p>
+            <p class="text-muted">{{ cartItem.price | currency: "USD" }}</p>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total Amount </span>
+            <strong>{{ cartTotal | currency: "USD" }}</strong>
+          </li>
+          <li class="list-group-item d-flex">
+            <div class="col-lg-4">
+              <div class="mb-3">
+                <div class="pt-4">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    routerLink="/confirmation"
+                    routerLinkActive="active"
+                  >
+                    Submit Order
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

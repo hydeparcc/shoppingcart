@@ -1,0 +1,45 @@
+<main class="container">
+  <div class="row">
+    <div class="col-md-9 col-lg-9 order-md-last">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <blockquote>
+          <p class="text-muted col-md-5 col-lg-5">Order Confirmation</p>
+          <span class="col-md-3 col-lg-3">
+            <a routerLink="/products" routerLinkActive="active"> Go Back</a>
+          </span>
+        </blockquote>
+      </h4>
+      <div
+        *ngIf="cartItems !== undefined && cartItems.length > 0"
+        class="list-group mb-3"
+      >
+        <ul>
+          <li
+            *ngFor="let cartItem of cartItems"
+            class="list-group-item d-flex justify-content-between lh-sm"
+          >
+            <p>
+              <span class="my-0"
+                >Product Name: {{ cartItem.productName }}
+              </span>
+            </p>
+            <p>
+              <span class="text-muted">Quantity: {{ cartItem.quantity }} </span>
+            </p>
+            <p class="text-muted">
+              Price per item: {{ cartItem.price | currency: "USD" }}
+            </p>
+            <p class="text-muted">
+              Total Price:
+              {{ cartItem.price * cartItem.quantity | currency: "USD" }}
+            </p>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Final Cart Amount: {{ cartTotal | currency: "USD" }} </span>
+            <strong></strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
