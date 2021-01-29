@@ -1,7 +1,7 @@
 # shoppingcart
 Shopping Cart application using Angular and Spring Boot
 
-1. Start the `eureka-server` for the `productlist` and `cart` micro service to register themselves for service discovery
+1. Start the `eureka-server` microservice which is used for service discovery and registration
 
 2. Start the `api-gateway` microservice
 
