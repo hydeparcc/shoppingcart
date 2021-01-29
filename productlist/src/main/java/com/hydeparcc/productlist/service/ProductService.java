@@ -6,6 +6,6 @@ import com.hydeparcc.productlist.model.Product;
 
 public interface ProductService {
 
-	List<Product> getAllProducts();
+	public List<Product> getAllProducts();
 
 }

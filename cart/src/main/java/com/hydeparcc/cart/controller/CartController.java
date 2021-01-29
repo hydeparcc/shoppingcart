@@ -2,13 +2,10 @@ package com.hydeparcc.cart.controller;
 
 import java.util.List;
 
-import javax.xml.ws.http.HTTPException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,14 +17,13 @@ import com.hydeparcc.cart.model.Cart;
 import com.hydeparcc.cart.service.CartService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/cart")
 public class CartController {
 
 	@Autowired
 	CartService cartService;
 
-	@CrossOrigin(origins = "http://localhost:4200")
-	@GetMapping
+	@GetMapping("/list")
 	public ResponseEntity<ApiResponse> getCartItems(@RequestHeader (value = "sessionid", required = true) String sessionId){
 
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -50,8 +46,7 @@ public class CartController {
 
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
-	@PostMapping
+	@PostMapping("/add")
 	public ResponseEntity<Cart> addItem(@RequestBody Cart cart, @RequestHeader (value = "sessionid", required = true) String sessionId) {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("sessionid", sessionId);
@@ -70,7 +65,6 @@ public class CartController {
 
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/delete")
 	public ResponseEntity deleteItem(@RequestBody Cart cart, @RequestHeader (value = "sessionid", required = true) String sessionId) {
 		HttpHeaders responseHeaders = new HttpHeaders();
