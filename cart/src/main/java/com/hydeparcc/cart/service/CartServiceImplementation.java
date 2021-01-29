@@ -52,8 +52,12 @@ public class CartServiceImplementation implements CartService {
 				if(productQuantityInCart > 0 && productQuantityInCart > cart.getQuantity()) {
 					productQuantityInCart = productQuantityInCart - cart.getQuantity();
 					productInCart.get().setQuantity(productQuantityInCart);
-					cartRepository.save(productInCart.get());
-					return true;
+					Optional<Cart> updatedCartItem = Optional.of(cartRepository.save(productInCart.get()));
+					if(updatedCartItem.isPresent()) {
+						return true;
+					}else {
+						return false;
+					}
 				} else {
 					cartRepository.deleteCartItem(cart.getUserSessionId(), cart.getProductId());
 					return true;
