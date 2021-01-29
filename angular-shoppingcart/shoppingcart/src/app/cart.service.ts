@@ -11,7 +11,7 @@ import { CartItem } from './cart-item';
   providedIn: 'root',
 })
 export class CartService {
-  private cartUrl = 'http://localhost:8082';
+  private cartUrl = 'http://localhost:8080/cart';
   private cartuser: any;
 
   constructor(private httpClient: HttpClient) {}
@@ -26,12 +26,10 @@ export class CartService {
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
-      'Access-Control-Allow-Credentials': 'true',
       sessionid: this.cartuser,
     });
 
-    return this.httpClient.get<CartItems>(this.cartUrl, {
+    return this.httpClient.get<CartItems>(`${this.cartUrl}/list`, {
       headers: headers,
       observe: 'response',
     });
@@ -47,12 +45,10 @@ export class CartService {
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
-      'Access-Control-Allow-Credentials': 'true',
       sessionid: this.cartuser,
     });
 
-    return this.httpClient.post<any>(this.cartUrl, cartItem, {
+    return this.httpClient.post<any>(`${this.cartUrl}/add`, cartItem, {
       headers: headers,
       observe: 'response',
     });
@@ -68,8 +64,6 @@ export class CartService {
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
-      'Access-Control-Allow-Credentials': 'true',
       sessionid: this.cartuser,
     });
 

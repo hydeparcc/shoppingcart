@@ -10,7 +10,7 @@ import { Products } from './products';
   providedIn: 'root',
 })
 export class ProductsService {
-  private productListUrl = 'http://localhost:8081';
+  private productListUrl = 'http://localhost:8080/product/list';
   private cartuser: any;
 
   constructor(private httpClient: HttpClient) {}
@@ -25,8 +25,6 @@ export class ProductsService {
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': 'http://localhost:4200',
-      'Access-Control-Allow-Credentials': 'true',
       sessionid: this.cartuser,
     });
 
