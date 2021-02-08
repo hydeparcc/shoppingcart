@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: cloud-config-server
+  config:
+    activate:
+      on-profile: dev
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hydeparcc/shoppingcart.git
+          searchPaths: config-server-repo
+          cloneOnStart: true
