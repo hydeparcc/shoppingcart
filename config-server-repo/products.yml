@@ -1,11 +1,7 @@
-server:
-  port: 8081
 spring:
   application:
     name: products
-  config:
-    activate:
-      on-profile: dev
+  profiles: dev
   h2:
     console:
       enabled: true
