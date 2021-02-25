@@ -1,9 +1,10 @@
 server:
   port: 8080
-
 spring:
   application:
     name: api-gateway
+  profiles:
+  - dev
   cloud:
     gateway:
       routes:
@@ -15,4 +16,10 @@ spring:
         uri: lb://CART
         predicates:
         - Path=/cart/**
-      
+  session:
+    store-type: redis
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
