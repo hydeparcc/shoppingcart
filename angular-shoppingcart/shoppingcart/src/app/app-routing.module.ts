@@ -5,6 +5,7 @@ import { ProductsComponent } from './products/products.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'products' },
   { path: 'products', component: ProductsComponent },
   { path: 'confirmation', component: ConfirmationComponent },
 ];

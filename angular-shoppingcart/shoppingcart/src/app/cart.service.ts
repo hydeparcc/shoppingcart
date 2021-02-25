@@ -12,21 +12,20 @@ import { CartItem } from './cart-item';
 })
 export class CartService {
   private cartUrl = 'http://localhost:8080/cart';
-  private cartuser: any;
+  private guestUser: any;
 
   constructor(private httpClient: HttpClient) {}
 
   getCartItems(): Observable<HttpResponse<CartItems>> {
-    if (localStorage.getItem('cartuser')) {
-      this.cartuser = localStorage.getItem('cartuser');
+    if (localStorage.getItem('_guestuser')) {
+      this.guestUser = localStorage.getItem('_guestuser');
     } else {
-      this.cartuser = Math.random().toString(36).substr(2, 10);
-      localStorage.setItem('cartuser', this.cartuser);
+      this.guestUser = Math.random().toString(36).substr(2, 10);
+      localStorage.setItem('_guestuser', this.guestUser);
     }
 
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8',
-      sessionid: this.cartuser,
+    const headers = new HttpHeaders({
+      'X-Guest-User': this.guestUser,
     });
 
     return this.httpClient.get<CartItems>(`${this.cartUrl}/list`, {
@@ -36,16 +35,15 @@ export class CartService {
   }
 
   addToCart(cartItem: CartItem): Observable<HttpResponse<any>> {
-    if (localStorage.getItem('cartuser')) {
-      this.cartuser = localStorage.getItem('cartuser');
+    if (localStorage.getItem('_guestuser')) {
+      this.guestUser = localStorage.getItem('_guestuser');
     } else {
-      this.cartuser = Math.random().toString(36).substr(2, 10);
-      localStorage.setItem('cartuser', this.cartuser);
+      this.guestUser = Math.random().toString(36).substr(2, 10);
+      localStorage.setItem('_guestuser', this.guestUser);
     }
 
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8',
-      sessionid: this.cartuser,
+    const headers = new HttpHeaders({
+      'X-Guest-User': this.guestUser,
     });
 
     return this.httpClient.post<any>(`${this.cartUrl}/add`, cartItem, {
@@ -55,16 +53,15 @@ export class CartService {
   }
 
   deleteFromCart(cartItem: CartItem): Observable<HttpResponse<any>> {
-    if (localStorage.getItem('cartuser')) {
-      this.cartuser = localStorage.getItem('cartuser');
+    if (localStorage.getItem('_guestuser')) {
+      this.guestUser = localStorage.getItem('_guestuser');
     } else {
-      this.cartuser = Math.random().toString(36).substr(2, 10);
-      localStorage.setItem('cartuser', this.cartuser);
+      this.guestUser = Math.random().toString(36).substr(2, 10);
+      localStorage.setItem('_guestuser', this.guestUser);
     }
 
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json; charset=utf-8',
-      sessionid: this.cartuser,
+    const headers = new HttpHeaders({
+      'X-Guest-User': this.guestUser,
     });
 
     return this.httpClient.post<any>(`${this.cartUrl}/delete`, cartItem, {
